@@ -2,18 +2,20 @@ package linkedlist;
 
 import java.util.List;
 
-public class SinglyLinkedList<T> implements LinkedList<T> {
+public class SinglyLinkedList<T> implements LinkedList<T, LNode<T>> {
 
     private LNode<T> head;
     private LNode<T> tail;
     private int count;
 
-    public LNode<T> getHead() {
-        return head;
+    @Override
+    public LNode<T> getLast() {
+        return this.tail;
     }
 
-    public LNode<T> getTail() {
-        return tail;
+    @Override
+    public LNode<T> getFirst() {
+        return this.head;
     }
 
     /* order of n O(n) for add node in worse case */
@@ -24,7 +26,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
         if (this.count == 0) {
             this.head = node;
         } else {
-            LNode<T> cur = this.getHead();
+            LNode<T> cur = this.head;
             while (cur.getNext() != null)
                 cur = cur.getNext();
 
@@ -42,7 +44,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
     public void prepend(T data) {
         LNode<T> node = new LNode<>(data);
         if (this.count > 0) {
-            LNode<T> cur = this.getHead();
+            LNode<T> cur = this.head;
             node.setNext(cur);
         }
         this.head = node;
@@ -54,12 +56,12 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
     public void remove(T data) {
         if (this.count <= 0) return;
 
-        LNode<T> cur = this.getHead();
+        LNode<T> cur = this.tail;
         if (cur.getData().equals(data)) {
             this.head = this.head.getNext();
             this.count--;
         } else {
-            LNode<T> prev = this.getHead();
+            LNode<T> prev = this.tail;
             cur = this.head.getNext();
             while (cur.getNext() != null) {
                 if (cur.getData().equals(data)) {
@@ -74,23 +76,23 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
     /* order of n O(n) for search in worse case */
     @Override
-    public int search(T data) {
-        if (this.count <= 0) return 0;
+    public LNode<T> search(T data) {
+        if (this.count <= 0) return null;
 
         int position = 0;
-        LNode<T> cur = this.getHead();
-        if (this.getTail().getData().equals(data)) return this.count;
+        LNode<T> cur = this.head;
+        if (this.tail.getData().equals(data)) return this.tail;
         while (cur != null) {
             ++position;
-            if (cur.getData().equals(data)) return position;
+            if (cur.getData().equals(data)) return cur;
             else cur = cur.getNext();
         }
-        return 0;
+        return null;
     }
 
     @Override
     public void display() {
-        LNode<T> cur = this.getHead();
+        LNode<T> cur = this.getFirst();
         while (cur != null) {
             System.out.println(cur.getData());
             cur = cur.getNext();

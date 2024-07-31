@@ -2,7 +2,7 @@ package linkedlist;
 
 import java.util.List;
 
-public interface LinkedList<T> {
+public interface LinkedList<T, R> {
     void append(T data);
 
     void prepend(T data);
@@ -11,9 +11,13 @@ public interface LinkedList<T> {
 
     void remove(T data);
 
-    int search(T data);
+    R search(T data);
 
     void display();
 
     int getLength();
+
+    R getLast();
+
+    R getFirst();
 }

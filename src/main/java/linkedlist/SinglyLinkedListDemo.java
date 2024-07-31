@@ -5,14 +5,14 @@ import java.util.List;
 public class SinglyLinkedListDemo {
     public static void main(String[] args) {
         System.out.println("Linked List Demo:");
-        LinkedList<String> linkedList = new SinglyLinkedList<>();
+        LinkedList<String, LNode<String>> linkedList = new SinglyLinkedList<>();
         linkedList.appendAll(List.of("a", "b", "c", "d", "e"));
         System.out.println("node count: " + linkedList.getLength());
         System.out.println("dumping all nodes: ");
         linkedList.display();
-        int index = linkedList.search("d");
-        if (index > 0)
-            System.out.println("found at position: " + index);
+        LNode<String> found = linkedList.search("d");
+        if (found != null)
+            System.out.println("found: " + found.getData());
         else
             System.out.println("not found");
 
@@ -27,7 +27,7 @@ public class SinglyLinkedListDemo {
     }
 
     private static void forInt() {
-        LinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        LinkedList<Integer, LNode<Integer>> linkedList = new SinglyLinkedList<>();
         linkedList.append(1);
         linkedList.append(50);
         linkedList.append(23);
@@ -36,9 +36,9 @@ public class SinglyLinkedListDemo {
         System.out.println("node count: " + linkedList.getLength());
         System.out.println("dumping all nodes: ");
         linkedList.display();
-        int index = linkedList.search(15);
-        if (index > 0)
-            System.out.println("found at position: " + index);
+        LNode<Integer> found = linkedList.search(15);
+        if (found != null)
+            System.out.println("found: " + found.getData());
         else
             System.out.println("not found");
 
