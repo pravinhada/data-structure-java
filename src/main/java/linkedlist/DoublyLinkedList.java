@@ -60,8 +60,12 @@ public class DoublyLinkedList<T> implements LinkedList<T, DNode<T>> {
         DNode<T> result = this.search(data);
         if (result != null) {
             DNode<T> prev = result.getPrev();
-            result.getNext().setPrev(prev);
-            prev.setNext(result.getNext());
+            if (result.getNext() != null)
+                result.getNext().setPrev(prev);
+            else
+                this.tail = prev;
+            if (prev != null)
+                prev.setNext(result.getNext());
             this.count--;
         }
     }
