@@ -11,9 +11,15 @@ public class DoublyLinkedListDemo {
         linkedList.append("e");
 
         linkedList.display();
+        System.out.println("Total length of linked list: " + linkedList.getLength());
 
+        DNode<String> c = linkedList.search("c");
+        System.out.println("search c: " + (c != null ? c.getData() : null));
+        System.out.println("remove c");
+        linkedList.remove("c");
         System.out.println("Displaying reverse");
         displayReverse(linkedList);
+        System.out.println("Total length of linked list: " + linkedList.getLength());
     }
 
     private static void displayReverse(LinkedList<String, DNode<String>> linkedList) {

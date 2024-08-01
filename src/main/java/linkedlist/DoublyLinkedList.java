@@ -57,11 +57,22 @@ public class DoublyLinkedList<T> implements LinkedList<T, DNode<T>> {
 
     @Override
     public void remove(T data) {
-
+        DNode<T> result = this.search(data);
+        if (result != null) {
+            DNode<T> prev = result.getPrev();
+            result.getNext().setPrev(prev);
+            prev.setNext(result.getNext());
+            this.count--;
+        }
     }
 
     @Override
     public DNode<T> search(T data) {
+        DNode<T> current = this.head;
+        while (current != null) {
+            if (current.getData().equals(data)) return current;
+            current = current.getNext();
+        }
         return null;
     }
 
