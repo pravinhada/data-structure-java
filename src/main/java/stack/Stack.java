@@ -1,7 +1,7 @@
 package stack;
 
 public class Stack<T> {
-	private static int MAX_SIZE = 40;
+	private static final int MAX_SIZE = 40;
 	private Element<T> top;
 	private int size = 0;
 
@@ -15,8 +15,7 @@ public class Stack<T> {
 			throw new StackOverflowException();
 		}
 
-		Element<T> ele = new Element<T>(data, top);
-		this.top = ele;
+        this.top = new Element<T>(data, top);
 		this.size++;
 
 	}
