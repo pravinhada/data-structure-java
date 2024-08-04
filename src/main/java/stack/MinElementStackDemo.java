@@ -22,7 +22,7 @@ public class MinElementStackDemo {
     }
 
     /* this will give O(1) constant time to check the minimum value */
-    public static int getMinium() throws StackUnderflowException {
+    public static int getMinimum() throws StackUnderflowException {
         return minStack.peek();
     }
 
@@ -35,6 +35,6 @@ public class MinElementStackDemo {
         push(1);
         push(9);
 
-        System.out.print("minimum is: " + getMinium());
+        System.out.print("minimum is: " + getMinimum());
     }
 }
